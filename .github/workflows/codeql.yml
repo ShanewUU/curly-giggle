@@ -60,10 +60,10 @@ jobs:
     # If this step fails, then you should remove it and run the build manually (see below)
     #- name: Autobuild
     #  uses: github/codeql-action/autobuild@v2
-    - name: Setup .NET version ${{ matrix.dotnet-version }}
+    - name: Setup .NET version 7.0
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version:  ${{ matrix.dotnet-version }}
+        dotnet-version:  '7.0.x'
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
