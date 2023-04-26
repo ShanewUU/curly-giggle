@@ -64,16 +64,21 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version:  '7.0.x'
+    - name: Install MAUI Workloads
+      run: |
+        dotnet workload install android --ignore-failed-sources
+        dotnet workload install maui --ignore-failed-sources
     - name: Restore dependencies
       run: |
         cd DemoApp 
-        dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - uses: actions/upload-artifact@v3
+        dotnet restore /DemoApp
+    - name: Build MAUI 
+      run: dotnet build DemoApp/DemoApp/DemoApp.csproj -c Release -f net7.0-android --no-restore
+    - name: upload apk
+      uses: actions/upload-artifact@v3
       with:
-        name: build-artifacts
-        path: build/
+        name: upload-ci-build
+        path: bin\Release\net7.0-android/*Signed.a*
     
 
     # ℹ️ Command-line programs to run using the OS shell.
