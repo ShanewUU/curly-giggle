@@ -18,8 +18,8 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ "main" ]
-  schedule:
-    - cron: '31 18 * * 5'
+  #schedule:
+    #- cron: '31 18 * * 5'
 
 jobs:
   analyze:
@@ -65,7 +65,9 @@ jobs:
       with:
         dotnet-version:  '7.0.x'
     - name: Restore dependencies
-      run: dotnet restore
+      run: |
+        cd DemoApp 
+        dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - uses: actions/upload-artifact@v3
