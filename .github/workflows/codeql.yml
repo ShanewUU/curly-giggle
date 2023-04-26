@@ -71,7 +71,7 @@ jobs:
     - name: Restore dependencies
       run: |
         cd DemoApp 
-        dotnet restore /DemoApp
+        dotnet restore /DemoApp/DemoApp.csproj
     - name: Build MAUI 
       run: dotnet build DemoApp/DemoApp/DemoApp.csproj -c Release -f net7.0-android --no-restore
     - name: upload apk
